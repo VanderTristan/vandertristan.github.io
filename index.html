@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IVANDER TRISTAN ANGOW — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+  <div class="glow-orb"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">portfolio</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('hireModal').classList.add('show')">Hire Me →</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-inner">
+
+      <!-- LEFT: teks + info -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          Available for work
+        </div>
+        <h1 class="hero-title">
+          HELLO<br>
+          <span class="accent">I'M</span><br>
+          <span class="dim">IVANDER<br>TRISTAN ANGOW.</span>
+        </h1>
+        <p class="hero-desc">UI/UX Developer</p>
+
+        <!-- EDU info inline -->
+        <div class="hero-edu">
+          <div class="edu-line">
+            <span class="edu-icon">🎓</span>
+            <span class="edu-text">Politeknik Negeri Manado</span>
+          </div>
+          <div class="edu-line">
+            <span class="edu-icon">📐</span>
+            <span class="edu-text">Teknik Informatika — Angkatan 2022</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+        </div>
+      </div>
+
+      <!-- RIGHT: foto -->
+      <div class="hero-photo-wrap">
+        <div class="photo-frame">
+          <img src="photo.jpg" alt="Ivander Tristan Angow" class="hero-photo" />
+          <div class="photo-border"></div>
+          <div class="photo-tag">
+            <span class="photo-tag-dot"></span>
+            UI/UX Dev
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="section-label">// what I do</div>
+    <h2 class="section-title">Core <span class="dim">skills &</span><br>technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-card" data-fill="90">
+        <span class="skill-icon">{}</span>
+        <div class="skill-name">Frontend Dev</div>
+        <div class="skill-desc">HTML, CSS, JavaScript — membangun UI yang responsif & accessible dari nol.</div>
+        <div class="skill-bar"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-card" data-fill="85">
+        <span class="skill-icon">~~</span>
+        <div class="skill-name">CSS & Animation</div>
+        <div class="skill-desc">CSS animations, micro-interactions yang smooth dan elegan.</div>
+        <div class="skill-bar"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-card" data-fill="80">
+        <span class="skill-icon">[]</span>
+        <div class="skill-name">UI/UX Design</div>
+        <div class="skill-desc">Figma, design systems, user-first approach dalam setiap keputusan desain.</div>
+        <div class="skill-bar"><div class="skill-fill"></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-mono">© 2025 Ivander Tristan Angow — all rights reserved</div>
+    <div class="footer-links">
+      <a href="https://github.com/VanderTristan">GitHub</a>
+    </div>
+  </footer>
+
+  <!-- HIRE ME MODAL -->
+  <div class="overlay" id="hireModal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <div class="modal-top-line"></div>
+      <div id="formState">
+        <div class="modal-label">// get in touch</div>
+        <div class="modal-title">Let's work together</div>
+        <div class="modal-sub">Ceritain project lo, gue bakal balas secepat mungkin.</div>
+        <div class="modal-field">
+          <label>Nama</label>
+          <input type="text" placeholder="John Doe" id="inputName" />
+        </div>
+        <div class="modal-field">
+          <label>Email</label>
+          <input type="email" placeholder="john@email.com" id="inputEmail" />
+        </div>
+        <div class="modal-field">
+          <label>Pesan</label>
+          <textarea rows="3" placeholder="Hai, gue butuh lo buat..." id="inputMsg"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button class="btn-send" id="btnSend" onclick="handleSend()">Send Message →</button>
+        </div>
+      </div>
+      <div class="success-state" id="successState">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Pesan terkirim!</div>
+        <div class="success-sub">Makasih udah reach out. Gue bakal reply secepatnya.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    const EMAILJS_PUBLIC_KEY  = 'nIbPYDLiaBpZCNEtm';
+    const EMAILJS_SERVICE_ID  = 'service_kc3six9';
+    const EMAILJS_TEMPLATE_ID = 'template_1m8eomu';
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const cards = document.querySelectorAll('.skill-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target.dataset.fill;
+          const bar = entry.target.querySelector('.skill-fill');
+          setTimeout(() => { bar.style.width = fill + '%'; }, 200);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    cards.forEach(c => observer.observe(c));
+
+    function closeModal() {
+      document.getElementById('hireModal').classList.remove('show');
+      document.getElementById('formState').style.display = 'block';
+      document.getElementById('successState').style.display = 'none';
+      document.getElementById('inputName').value = '';
+      document.getElementById('inputEmail').value = '';
+      document.getElementById('inputMsg').value = '';
+      const btn = document.getElementById('btnSend');
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('hireModal')) closeModal();
+    }
+
+    function handleSend() {
+      const name  = document.getElementById('inputName').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const msg   = document.getElementById('inputMsg').value.trim();
+      if (!name || !email || !msg) { alert('Isi semua field dulu ya!'); return; }
+      const btn = document.getElementById('btnSend');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name, from_email: email, message: msg, to_email: 'ivancanz1234@gmail.com',
+      })
+      .then(() => {
+        document.getElementById('formState').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+        setTimeout(() => { closeModal(); }, 2500);
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        alert('Gagal kirim pesan. Coba lagi ya!');
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+      });
+    }
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  </script>
+</body>
+</html>
